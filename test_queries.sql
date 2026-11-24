@@ -21,7 +21,6 @@ LEFT JOIN Enrollment e ON e.OfferingID = o.OfferingID
 WHERE o.Term = 'Fall' AND o.Year = 2026
 GROUP BY i.InstructorID
 ORDER BY Students DESC
-LIMIT 10;
 
 -- Q3: Average GPA by major department and class rank
 SELECT d.DeptName AS Major, s.Rank, COUNT(*) AS Students, ROUND(AVG(s.GPA), 2) AS AvgGPA
