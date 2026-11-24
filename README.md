@@ -1,18 +1,18 @@
 # University Records Database
 
-Final project for CSC 4402 (Introduction to Database Management Systems) at LSU.
+Final project for CSC 4402 (Introduction to Database Management Systems) at Louisiana State University.
 
-A SQLite database for a university's academic records office: departments, instructors,
-students, catalog courses and prerequisites, the sections offered each term, and student
-enrollments with grades. It comes with a Python/Tkinter interface for adding, updating and
-deleting data, five test queries, and an automated test suite.
+Group Members: John Holcomb (johnholcomb10) | Clebert Major (ClebertMajor) | Charles Francisco (Charles-Francisco) | Jason Gonzalez (jjgonzales2005) | Jaylin Anderson (Jand245)
+
+## Description
+
+A SQLite database for a university's academic records office: departments, instructors, students, catalog courses and prerequisites, the sections offered each term, and student enrollments with grades. It comes with a Python/Tkinter interface for adding, updating, and deleting data. It also includes five test queries and an automated test suite.
 
 ## Requirements
 
-- Python 3.9 or newer (tested on 3.13). Only the standard library is used (`sqlite3`, `tkinter`).
+- Python 3.9 or newer (tested on 3.13-14). Only the standard library is used (`sqlite3`, `tkinter`).
   - Windows / macOS: the python.org installer includes Tkinter.
   - Linux: install it separately if needed, for example `sudo apt install python3-tk`.
-- Optional: the `sqlite3` command-line shell, to run the SQL files directly.
 
 On Windows, use `py` in place of `python` if `python` is not on your PATH.
 
@@ -26,29 +26,25 @@ On Windows, use `py` in place of `python` if `python` is not on your PATH.
 | `test_queries.sql` | The five test queries |
 | `run_queries.py` | Runs the five test queries and prints the results as tables |
 | `test_database.py` | Automated tests: data checks, constraint checks, and the five queries |
-| `project.py` | Tkinter application with the five user interfaces |
+| `project.py` | Tkinter UI application |
+| `Project Rubric.pdf` | Rubric for project |
 
 ## Quick start
 
 ```bash
-# 1. (Optional) rebuild the database. project.db is already included.
+# 1. (Optional) Rebuild the database. project.db is already included.
 python generate_data.py
 
-# 2. Run the five test queries
+# 2. Run the application.
+python project.py
+
+# 3. Run the five test queries in the CLI. Test queries are also present within the UI application.
 python run_queries.py              # first 20 rows of each result
 python run_queries.py --max-rows 0 # all rows
 
-# 3. Run the automated tests (uses a temporary copy, never touches project.db)
+# 4. Run the automated tests (uses a temporary copy, never touches project.db)
 python test_database.py
 
-# 4. Start the application
-python project.py
-```
-
-With the SQLite shell you can also run:
-
-```bash
-sqlite3 -header -column project.db < test_queries.sql
 ```
 
 ## Database
@@ -78,16 +74,14 @@ Foreign keys are enforced (`PRAGMA foreign_keys = ON`):
 | # | Query |
 | --- | --- |
 | Q1 | Class roster for CSC 1350, Fall 2026 |
-| Q2 | Top 10 instructors by students taught in Fall 2026 |
+| Q2 | Instructors ordered from largest to least by students taught in Fall 2026 |
 | Q3 | Average GPA by major department and class rank |
 | Q4 | Enrollments where the student had not passed a prerequisite in an earlier term |
 | Q5 | Five most popular courses across all terms, with pass rate |
 
 ## Application (`project.py`)
 
-The window has one tab per user task. Every tab has a search box and Add, Edit and Delete
-buttons. Double-click a row to edit it. Foreign keys are chosen from dropdowns, and database
-errors (for example, a GPA above 4.0 or a duplicate enrollment) are shown in a message box.
+The window has one tab per user task. Every tab has a search box and Add, Edit and Delete buttons. Double-click a row to edit it. Foreign keys are chosen from dropdowns, and database errors (for example, a GPA above 4.0 or a duplicate enrollment) are shown in a message box.
 
 | Tab | Typical user | What you can do |
 | --- | --- | --- |
